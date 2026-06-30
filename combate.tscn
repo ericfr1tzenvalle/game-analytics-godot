@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://bmmeb5tpdw5xw"]
+
+[ext_resource type="Script" uid="uid://3vacuhk7svx5" path="res://gerenciador_turnos.gd" id="1_tj7jl"]
+[ext_resource type="Script" uid="uid://2dy5qcalcx0k" path="res://hud.gd" id="1_xous7"]
+[ext_resource type="PackedScene" uid="uid://cm06s4rc3vo40" path="res://carta.tscn" id="2_2hj6g"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tj7jl"]
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_wnl7k"]
+font_size = 40
+
+[node name="Combate" type="Control" unique_id=1149810434]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="." unique_id=637397045]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.058610052, 0.13151738, 0.21002695, 1)
+
+[node name="AreaCombate" type="Node2D" parent="." unique_id=1491155215]
+
+[node name="HUD" type="Control" parent="." unique_id=1987351686]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xous7")
+
+[node name="BackgroundMao" type="ColorRect" parent="HUD" unique_id=1068853957]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 0.5372549)
+
+[node name="TextoEnergia" type="Label" parent="HUD" unique_id=1360617677]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = -128.0
+offset_right = 254.0
+offset_bottom = -73.0
+grow_vertical = 0
+text = "ENERGIA 5/5"
+label_settings = SubResource("LabelSettings_tj7jl")
+horizontal_alignment = 1
+
+[node name="BotaoFimTurno" type="Button" parent="HUD" unique_id=1120753692]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -242.0
+offset_top = -33.0
+offset_bottom = 33.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "FIM DE TURNO
+"
+
+[node name="TextoTurno" type="Label" parent="HUD" unique_id=681701167]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 42.0
+offset_right = 210.0
+offset_bottom = 97.0
+text = "TURNO 1"
+label_settings = SubResource("LabelSettings_wnl7k")
+
+[node name="Mao" type="HBoxContainer" parent="HUD" unique_id=733601624]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -214.0
+offset_top = -220.0
+offset_right = 214.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+
+[node name="Carta1" parent="HUD/Mao" unique_id=667553664 instance=ExtResource("2_2hj6g")]
+layout_mode = 2
+
+[node name="Carta2" parent="HUD/Mao" unique_id=1536914787 instance=ExtResource("2_2hj6g")]
+layout_mode = 2
+
+[node name="Carta3" parent="HUD/Mao" unique_id=278935474 instance=ExtResource("2_2hj6g")]
+layout_mode = 2
+
+[node name="GerenciadorTurnos" type="Node2D" parent="." unique_id=8465407]
+script = ExtResource("1_tj7jl")
+
+[node name="ColetorDados" type="Node2D" parent="." unique_id=22440774]
+
+[connection signal="pressed" from="HUD/BotaoFimTurno" to="GerenciadorTurnos" method="_on_botao_fim_turno_pressed"]
+[connection signal="energia_alterada" from="GerenciadorTurnos" to="HUD" method="_on_gerenciador_turnos_energia_alterada"]
+[connection signal="turno_alterado" from="GerenciadorTurnos" to="HUD" method="_on_gerenciador_turnos_turno_alterado"]

@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://cm06s4rc3vo40"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_77s45"]
+font_size = 12
+font_color = Color(0, 0.69624, 0, 1)
+outline_color = Color(0.69694936, 2.0094587e-06, 5.7756904e-07, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4gtqo"]
+font_size = 8
+font_color = Color(0, 0.6627451, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b5ehv"]
+bg_color = Color(0.08627451, 0.3764706, 0.08627451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqtiw"]
+bg_color = Color(0.09019608, 0.39607844, 0.09019608, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xu3ok"]
+font_size = 8
+
+[node name="Carta" type="PanelContainer" unique_id=1325432087]
+custom_minimum_size = Vector2(140, 220)
+offset_right = 140.0
+offset_bottom = 220.0
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=821847036]
+layout_mode = 2
+color = Color(0, 0.2, 0, 1)
+
+[node name="Margem" type="MarginContainer" parent="." unique_id=506109410]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Conteudo" type="VBoxContainer" parent="Margem" unique_id=1863397037]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="Cabecalho" type="HBoxContainer" parent="Margem/Conteudo" unique_id=881873245]
+layout_mode = 2
+
+[node name="Energia" type="Label" parent="Margem/Conteudo/Cabecalho" unique_id=1047436183]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "5"
+label_settings = SubResource("LabelSettings_77s45")
+horizontal_alignment = 1
+
+[node name="NomeCarta" type="Label" parent="Margem/Conteudo/Cabecalho" unique_id=1638553655]
+custom_minimum_size = Vector2(70, 10)
+layout_mode = 2
+text = "GOLPE ESPADA"
+label_settings = SubResource("LabelSettings_4gtqo")
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="AreaImagem" type="PanelContainer" parent="Margem/Conteudo" unique_id=1569707143]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_b5ehv")
+
+[node name="ColorRect" type="ColorRect" parent="Margem/Conteudo/AreaImagem" unique_id=59098015]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+color = Color(0, 0, 0, 0.41568628)
+
+[node name="AreaDescricao" type="PanelContainer" parent="Margem/Conteudo" unique_id=1876697303]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_nqtiw")
+
+[node name="Descricao" type="Label" parent="Margem/Conteudo/AreaDescricao" unique_id=1159155460]
+layout_mode = 2
+text = "Causa 5 de dano"
+label_settings = SubResource("LabelSettings_xu3ok")
+horizontal_alignment = 1
