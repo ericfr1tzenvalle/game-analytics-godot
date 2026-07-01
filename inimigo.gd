@@ -1,33 +1,62 @@
 class_name Enemy
 extends Control
-@export_category("Status")
-@export var dano: int
-var vida: int = vida_max
-@export var vida_max: int
-@export var defesa: int
-@export var textura_color: Color
-@export var nome: String = 'Default'
+@export_category("Stats")
+@export_range(1,1000) var damage: int = 3
+@export_range(1,1000) var max_health: int = 20
+var current_health: int 
+@export var defense: int = 5
 
-@onready var textura_atual: ColorRect = $Conteudo/Textura
-@onready var barra_vida: ProgressBar = $Conteudo/BarraProgresso
-@onready var nome_inimigo: Label = $Conteudo/Nome
-@onready var texto_vida: Label = $Conteudo/Vida
-# Called when the node enters the scene tree for the first time.
+# for now, the enemy is represented by a solid color.
+# This will later be replaced with a texture or portrait.
+@export var texture_color: Color
+@export var enemy_name: String = 'Default'
+
+@onready var current_texture: ColorRect = $Conteudo/Textura
+@onready var health_bar: ProgressBar = $Conteudo/BarraProgresso
+@onready var name_label: Label = $Conteudo/Nome
+@onready var health_label: Label = $Conteudo/Vida
+
+# i been thinking to add a ID to identify instace of enemy if have more enemy to
+# defree()
+signal died()
+
 func _ready() -> void:
-	
-"""
-Função para atualizar barra de vida
-"""
-func atualizar_vida():
-	barra_vida.max_value = vida_max
-	barra_vida.value = vida
-	
-	
+	initialize_enemy()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func initialize_enemy() -> void:
+	current_health = max_health
+	name_label.text = enemy_name
+	current_texture.color = texture_color
+	update_health_display()
 
-
+func update_health_display() -> void:
+	health_bar.max_value = max_health
+	health_bar.value = current_health
+	health_label.text = 'HP [%d/%d]' % [current_health, max_health]
 	
+func is_dead() -> bool:
+	return current_health <= 0
+	
+func take_damage(amount: int) -> void:
+	if amount <= 0:
+		return
+	if is_dead():
+		return
+	var effective_damage: int = amount - defense
+	current_health -= maxi(0, effective_damage)
+	if current_health <= 0:
+		current_health = 0
+	update_health_display()
+	if is_dead():
+		died.emit()
+
+func heal(amount: int) -> void:
+	if amount <= 0:
+		return
+	if is_dead():
+		return
+	current_health += amount
+	if current_health > max_health:
+		current_health = max_health
+	update_health_display()

@@ -140,11 +140,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_cmmtb")
-dano = 5
-vida_max = 200
-defesa = 5
-textura_color = Color(0.59607846, 0, 0, 1)
-nome = "Dr Kabum"
 
 [node name="Conteudo" type="VBoxContainer" parent="Inimigo" unique_id=1012057761]
 custom_minimum_size = Vector2(200, 200)
