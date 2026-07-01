@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://dn012refdyfxt"]
+
+[ext_resource type="Script" uid="uid://bhj6t025ut7u0" path="res://scripts/Enemy.gd" id="1_tt7e2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccjeu"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(5.7756904e-07, 0.96441895, 0.25477225, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8brup"]
+bg_color = Color(0, 0.41568628, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0.02745098, 0.81960785, 0.26666668, 1)
+
+[node name="Enemy" type="Control" unique_id=1251224914]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tt7e2")
+
+[node name="Content" type="VBoxContainer" parent="." unique_id=199442970]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_top = 42.0
+offset_right = 50.0
+offset_bottom = 300.0
+grow_horizontal = 2
+theme_override_constants/separation = 4
+accessibility_region = true
+
+[node name="Name" type="Label" parent="Content" unique_id=182694419]
+layout_mode = 2
+text = "JORGINHO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Artwork" type="ColorRect" parent="Content" unique_id=1580774277]
+custom_minimum_size = Vector2(200, 250)
+custom_maximum_size = Vector2(200, 300)
+layout_mode = 2
+color = Color(0.14519313, 0.6253599, 0.45280302, 1)
+
+[node name="HealthBar" type="ProgressBar" parent="Content" unique_id=761556639]
+custom_minimum_size = Vector2(225, 10)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.70818955, 0.0010087243, 0.7082278, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_ccjeu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8brup")
+value = 30.0
+show_percentage = false
+
+[node name="HealthLabel" type="Label" parent="Content" unique_id=1348613714]
+layout_mode = 2
+text = "HP 20/20"
+horizontal_alignment = 1

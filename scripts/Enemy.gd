@@ -11,10 +11,10 @@ var current_health: int
 @export var texture_color: Color
 @export var enemy_name: String = 'Default'
 
-@onready var current_texture: ColorRect = $Conteudo/Textura
-@onready var health_bar: ProgressBar = $Conteudo/BarraProgresso
-@onready var name_label: Label = $Conteudo/Nome
-@onready var health_label: Label = $Conteudo/Vida
+@onready var current_texture: ColorRect = $Content/Artwork
+@onready var health_bar: ProgressBar = $Content/HealthBar
+@onready var name_label: Label = $Content/Name
+@onready var health_label: Label = $Content/HealthLabel
 
 # i been thinking to add a ID to identify instace of enemy if have more enemy to
 # defree()
@@ -41,8 +41,10 @@ func is_dead() -> bool:
 func take_damage(amount: int) -> void:
 	if amount <= 0:
 		return
+		
 	if is_dead():
 		return
+		
 	var effective_damage: int = amount - defense
 	current_health -= maxi(0, effective_damage)
 	if current_health <= 0:
