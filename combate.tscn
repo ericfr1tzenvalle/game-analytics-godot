@@ -3,12 +3,28 @@
 [ext_resource type="Script" uid="uid://3vacuhk7svx5" path="res://gerenciador_turnos.gd" id="1_tj7jl"]
 [ext_resource type="Script" uid="uid://2dy5qcalcx0k" path="res://hud.gd" id="1_xous7"]
 [ext_resource type="PackedScene" uid="uid://cm06s4rc3vo40" path="res://carta.tscn" id="2_2hj6g"]
+[ext_resource type="Script" uid="uid://bhj6t025ut7u0" path="res://inimigo.gd" id="4_cmmtb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tj7jl"]
 font_size = 30
 
 [sub_resource type="LabelSettings" id="LabelSettings_wnl7k"]
 font_size = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccjeu"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(5.7756904e-07, 0.96441895, 0.25477225, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8brup"]
+bg_color = Color(0, 0.41568628, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0.02745098, 0.81960785, 0.26666668, 1)
 
 [node name="Combate" type="Control" unique_id=1149810434]
 layout_mode = 3
@@ -115,6 +131,61 @@ layout_mode = 2
 script = ExtResource("1_tj7jl")
 
 [node name="ColetorDados" type="Node2D" parent="." unique_id=22440774]
+
+[node name="Inimigo" type="Control" parent="." unique_id=193071771]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_cmmtb")
+dano = 5
+vida_max = 200
+defesa = 5
+textura_color = Color(0.59607846, 0, 0, 1)
+nome = "Dr Kabum"
+
+[node name="Conteudo" type="VBoxContainer" parent="Inimigo" unique_id=1012057761]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_top = 42.0
+offset_right = 50.0
+offset_bottom = 300.0
+grow_horizontal = 2
+theme_override_constants/separation = 4
+accessibility_region = true
+
+[node name="Nome" type="Label" parent="Inimigo/Conteudo" unique_id=2096168656]
+layout_mode = 2
+text = "JORGINHO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Textura" type="ColorRect" parent="Inimigo/Conteudo" unique_id=1974470728]
+custom_minimum_size = Vector2(200, 250)
+custom_maximum_size = Vector2(200, 300)
+layout_mode = 2
+color = Color(0.14519313, 0.6253599, 0.45280302, 1)
+
+[node name="BarraProgresso" type="ProgressBar" parent="Inimigo/Conteudo" unique_id=1755833413]
+custom_minimum_size = Vector2(225, 10)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.70818955, 0.0010087243, 0.7082278, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_ccjeu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8brup")
+value = 30.0
+show_percentage = false
+
+[node name="Vida" type="Label" parent="Inimigo/Conteudo" unique_id=1772508929]
+layout_mode = 2
+text = "HP 20/20"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="HUD/BotaoFimTurno" to="GerenciadorTurnos" method="_on_botao_fim_turno_pressed"]
 [connection signal="energia_alterada" from="GerenciadorTurnos" to="HUD" method="_on_gerenciador_turnos_energia_alterada"]
