@@ -48,7 +48,6 @@ func _get_drag_data(at_position: Vector2) -> Variant:
 
 	preview_root.add_child(preview_card)
 	set_drag_preview(preview_root)
-
 	return self
 
 func initialize_card():

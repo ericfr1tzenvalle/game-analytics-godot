@@ -28,8 +28,3 @@ func gastar_energia(custo:int):
 	energia_atual -= custo
 	energia_alterada.emit(energia_atual,energia_maxima)
 	return true
-
-
-func _on_botao_fim_turno_pressed() -> void:
-	print("JOGADA INIMIGA")
-	iniciar_turno()

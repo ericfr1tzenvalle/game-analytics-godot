@@ -16,7 +16,7 @@
 - Proximos passos
 - [ ] Adicionar identificação para diferenciar múltiplas instâncias de inimigos.
 - [ ] Permitir que o CombatController decida quando remover o inimigo morto.
-- [ ] Adicionar DropZone capaz de reconhecer o Card
+- [X] Adicionar DropZone capaz de reconhecer o Card
 - [ ] Encaminhar a carta para o CombatController
 
 
@@ -28,3 +28,5 @@ das variáveis e atualização da barra de vida e textos.
 - Card_view.gd: responsável por armazenar as variáveis da carta, como custo, nome, efeito e etc.
 Tem métodos drag and drop, carta implementa o método _get_drag_data() que é um método nativo do godot, que identifica
 quando um control está sendo arrastado e retorna os dados dele.
+- Drop_zone.gd: responsável por identificar se é uma carta que está sendo draggable acima do dropzone e se for
+posteriormente sera responsavel por chamar o CombatController.

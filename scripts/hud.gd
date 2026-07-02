@@ -1,7 +1,7 @@
 extends Control
 
-@onready var label_energia: Label = $TextoEnergia
-@onready var label_turno: Label = $TextoTurno
+@onready var label_energia: Label = $EnergyLabel
+@onready var label_turno: Label = $TurnLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

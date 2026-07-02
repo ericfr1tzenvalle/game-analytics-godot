@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bmmeb5tpdw5xw"]
 
+[ext_resource type="Script" uid="uid://cv1whfd4rn3xh" path="res://scenes/Drop_zone.gd" id="1_tp2sa"]
 [ext_resource type="Script" uid="uid://2dy5qcalcx0k" path="res://scripts/hud.gd" id="1_tppsp"]
 [ext_resource type="PackedScene" uid="uid://cm06s4rc3vo40" path="res://scenes/CardView.tscn" id="2_lnhn1"]
 [ext_resource type="Script" uid="uid://3vacuhk7svx5" path="res://scripts/gerenciador_turnos.gd" id="3_brs8u"]
@@ -11,13 +12,14 @@ font_size = 30
 [sub_resource type="LabelSettings" id="LabelSettings_wnl7k"]
 font_size = 40
 
-[node name="Combate" type="Control" unique_id=1149810434]
+[node name="Combat" type="Control" unique_id=1149810434]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Background" type="ColorRect" parent="." unique_id=637397045]
 layout_mode = 1
@@ -26,9 +28,29 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.058610052, 0.13151738, 0.21002695, 1)
 
-[node name="AreaCombate" type="Node2D" parent="." unique_id=1491155215]
+[node name="Enemy" parent="." unique_id=1251224914 instance=ExtResource("4_e5xpt")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -312.5
+offset_right = 350.0
+offset_bottom = 108.5
+mouse_filter = 2
+
+[node name="CombatDropZone" type="Control" parent="." unique_id=647888732]
+custom_minimum_size = Vector2(500, 300)
+anchors_preset = 0
+offset_left = 210.0
+offset_right = 910.0
+offset_bottom = 421.0
+script = ExtResource("1_tp2sa")
 
 [node name="HUD" type="Control" parent="." unique_id=1987351686]
 layout_mode = 1
@@ -37,20 +59,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_tppsp")
 
-[node name="BackgroundMao" type="ColorRect" parent="HUD" unique_id=1068853957]
+[node name="BackgroundHand" type="ColorRect" parent="HUD" unique_id=1068853957]
 custom_minimum_size = Vector2(300, 200)
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -227.0
 grow_horizontal = 2
 grow_vertical = 0
 color = Color(0, 0, 0, 0.5372549)
 
-[node name="TextoEnergia" type="Label" parent="HUD" unique_id=1360617677]
+[node name="EnergyLabel" type="Label" parent="HUD" unique_id=1360617677]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -60,11 +84,11 @@ offset_top = -128.0
 offset_right = 254.0
 offset_bottom = -73.0
 grow_vertical = 0
-text = "ENERGIA 5/5"
+text = "ENERGY 5/5"
 label_settings = SubResource("LabelSettings_tj7jl")
 horizontal_alignment = 1
 
-[node name="BotaoFimTurno" type="Button" parent="HUD" unique_id=1120753692]
+[node name="EndTurnButton" type="Button" parent="HUD" unique_id=1120753692]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -77,19 +101,18 @@ offset_bottom = 33.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
-text = "FIM DE TURNO
-"
+text = "END TURN"
 
-[node name="TextoTurno" type="Label" parent="HUD" unique_id=681701167]
+[node name="TurnLabel" type="Label" parent="HUD" unique_id=681701167]
 layout_mode = 0
 offset_left = 36.0
 offset_top = 42.0
 offset_right = 210.0
 offset_bottom = 97.0
-text = "TURNO 1"
+text = "TURN 1"
 label_settings = SubResource("LabelSettings_wnl7k")
 
-[node name="Mao" type="HBoxContainer" parent="." unique_id=733601624]
+[node name="Hand" type="HBoxContainer" parent="." unique_id=733601624]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -104,44 +127,28 @@ grow_vertical = 0
 size_flags_vertical = 8
 mouse_filter = 2
 
-[node name="Carta1" parent="Mao" unique_id=667553664 instance=ExtResource("2_lnhn1")]
+[node name="Card1" parent="Hand" unique_id=1107657299 instance=ExtResource("2_lnhn1")]
 layout_mode = 2
-card_id = 1
-card_name = "Jorge"
+card_name = "Jon"
 cost = 1
-description = "Tem dano elemental"
+description = "Jones"
 effect = "dano"
-effect_value = 5
-color = Color(1.92523e-06, 0.47083396, 0.49513453, 1)
-
-[node name="Carta2" parent="Mao" unique_id=1536914787 instance=ExtResource("2_lnhn1")]
-layout_mode = 2
-card_id = 2
-card_name = "Espada"
-cost = 3
-description = "Espada gigante"
-effect = "dano"
-effect_value = 3
-color = Color(0.53986263, 1.0348111e-06, 2.8878452e-07, 1)
-
-[node name="Carta3" parent="Mao" unique_id=278935474 instance=ExtResource("2_lnhn1")]
-layout_mode = 2
-card_id = 3
-card_name = "Cura"
-description = "Cura 2 de Vida"
-effect = "cura"
 effect_value = 2
-color = Color(0, 0, 0.6862745, 1)
+color = Color(0.8901961, 0, 0, 1)
 
-[node name="GerenciadorTurnos" type="Node2D" parent="." unique_id=8465407]
+[node name="Card2" parent="Hand" unique_id=356641437 instance=ExtResource("2_lnhn1")]
+layout_mode = 2
+
+[node name="Card3" parent="Hand" unique_id=358119440 instance=ExtResource("2_lnhn1")]
+layout_mode = 2
+
+[node name="TurnManager" type="Node2D" parent="." unique_id=8465407]
+unique_name_in_owner = true
 script = ExtResource("3_brs8u")
 
-[node name="ColetorDados" type="Node2D" parent="." unique_id=22440774]
+[node name="DataCollector" type="Node2D" parent="." unique_id=22440774]
 
-[node name="Inimigo" parent="." unique_id=1251224914 instance=ExtResource("4_e5xpt")]
-layout_mode = 1
-mouse_filter = 2
+[node name="CombatController" type="Node2D" parent="." unique_id=1586878326]
 
-[connection signal="pressed" from="HUD/BotaoFimTurno" to="GerenciadorTurnos" method="_on_botao_fim_turno_pressed"]
-[connection signal="energia_alterada" from="GerenciadorTurnos" to="HUD" method="_on_gerenciador_turnos_energia_alterada"]
-[connection signal="turno_alterado" from="GerenciadorTurnos" to="HUD" method="_on_gerenciador_turnos_turno_alterado"]
+[connection signal="energia_alterada" from="TurnManager" to="HUD" method="_on_gerenciador_turnos_energia_alterada"]
+[connection signal="turno_alterado" from="TurnManager" to="HUD" method="_on_gerenciador_turnos_turno_alterado"]
